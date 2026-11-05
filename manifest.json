@@ -1,0 +1,17 @@
+{
+  "name": "Project Shield \u2014 Protect what you buy",
+  "short_name": "Project Shield",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f8f6",
+  "theme_color": "#183c30",
+  "description": "Keep purchases, receipts and deadlines in one place.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Project Shield helps you remember purchases, receipts and important deadlines.">
+  <title>Project Shield — Protect what you buy</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">P</span><span>Project Shield</span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="overview"><span>▦</span> Overview</button>
+      <button class="nav-item" data-view="purchases"><span>▤</span> Purchases</button>
+      <button class="nav-item" data-view="deadlines"><span>◷</span> Deadlines</button>
+      <div class="sidebar-bottom"><div class="avatar">Y</div><div><b>Your workspace</b><small>Personal account</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">PERSONAL MONEY ORGANIZER</div><h1 id="page-title">Good morning.</h1></div><button class="primary" id="add-top">＋ Add purchase</button></header>
+      <section id="overview-view" class="view">
+        <div class="intro"><div><h2>Keep the important things, <em>in view.</em></h2><p>Track what you buy, keep receipts close and never miss a return or warranty deadline.</p></div><div class="intro-icon">✳</div></div>
+        <div class="stats">
+          <article class="stat-card"><span class="stat-label">Tracked purchases</span><strong id="stat-total">0</strong><small>Items in your space</small></article>
+          <article class="stat-card"><span class="stat-label">Upcoming deadlines</span><strong id="stat-upcoming">0</strong><small>Next 30 days</small></article>
+          <article class="stat-card"><span class="stat-label">Receipts saved</span><strong id="stat-receipts">0</strong><small>Attached to purchases</small></article>
+        </div>
+        <div class="section-heading"><div><h3>Coming up</h3><p>Deadlines that deserve your attention.</p></div><button class="text-button" data-go="deadlines">View all</button></div>
+        <div id="upcoming-list" class="item-list"></div>
+        <div class="section-heading"><div><h3>Recently added</h3><p>Your latest purchases.</p></div><button class="text-button" data-go="purchases">View all</button></div>
+        <div id="recent-list" class="item-list"></div>
+      </section>
+      <section id="purchases-view" class="view hidden">
+        <div class="section-heading page-section"><div><h2>Your purchases</h2><p>Keep product details and proof of purchase together.</p></div><button class="primary" id="add-purchases">＋ Add purchase</button></div>
+        <div id="all-purchases" class="item-list"></div>
+      </section>
+      <section id="deadlines-view" class="view hidden">
+        <div class="section-heading page-section"><div><h2>Deadlines</h2><p>Return and warranty dates, all in one place.</p></div></div>
+        <div id="all-deadlines" class="item-list"></div>
+      </section>
+      <footer>Project Shield is an organizer, not a legal or warranty adviser. Always confirm terms with the seller or manufacturer.</footer>
+    </main>
+  </div>
+
+  <dialog id="purchase-dialog">
+    <form id="purchase-form" method="dialog">
+      <div class="dialog-head"><div><div class="eyebrow">NEW RECORD</div><h2>Add a purchase</h2></div><button type="button" class="close" id="close-dialog" aria-label="Close">×</button></div>
+      <label>What did you buy?<input name="title" required maxlength="70" placeholder="e.g. Wireless headphones"></label>
+      <div class="form-grid">
+        <label>Price<input name="price" type="number" min="0" step="0.01" placeholder="0.00"></label>
+        <label>Currency<select name="currency"><option>EUR</option><option>USD</option><option>GBP</option><option>GHS</option></select></label>
+      </div>
+      <label>Store or seller<input name="seller" maxlength="70" placeholder="e.g. Local electronics shop"></label>
+      <div class="form-grid">
+        <label>Purchase date<input name="purchaseDate" type="date"></label>
+        <label>Return deadline<input name="returnDate" type="date"></label>
+      </div>
+      <label>Warranty end date<input name="warrantyDate" type="date"></label>
+      <label>Notes <span class="optional">Optional</span><textarea name="notes" rows="2" maxlength="300" placeholder="Model, order number (avoid sensitive details), etc."></textarea></label>
+      <label class="file-label">Receipt image or PDF <span class="optional">Optional · stored only in this browser for this demo</span><input name="receipt" type="file" accept="image/*,.pdf"></label>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancel-dialog">Cancel</button><button class="primary" type="submit">Save purchase</button></div>
+      <p class="form-note">Demo version: your records stay on this device. Do not use real sensitive documents yet.</p>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
